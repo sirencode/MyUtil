@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.util.yongheshen.myutil"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.util.yongheshen.myutil">
+
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,6 +16,9 @@
         </activity>
         <activity android:name=".SplashAct"/>
         <activity android:name=".EncrypDecrypActivity">
+
+        </activity>
+        <activity android:name=".AnimationAct">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
