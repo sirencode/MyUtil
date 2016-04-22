@@ -22,12 +22,17 @@
 
         </activity>
         <activity android:name=".recyclerview.MyRecyclerView">
+
+        </activity>
+        <activity android:name=".provider.ProviderAct">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <provider
+            android:authorities="com.util.yongheshen.myutil.provider"
+            android:name=".provider.MyProvicer" />
     </application>
 
 </manifest>
