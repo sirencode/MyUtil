@@ -19,6 +19,7 @@ public class MyProvicer  extends ContentProvider{
     /* 自定义匹配码 */
     public static final int TEACHER = 2;
     public static final UriMatcher uriMatcher;
+    // UriMatcher类用来匹配Uri，使用match()方法匹配路径时返回匹配码
     static {
         // 常量UriMatcher.NO_MATCH表示不匹配任何路径的返回码
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -33,8 +34,6 @@ public class MyProvicer  extends ContentProvider{
     public static final String CONTENT_TYPE_ITME = "vnd.android.cursor.item/hb.android.teacher";
 
     private DBOpenHelper dbOpenHelper = null;
-    // UriMatcher类用来匹配Uri，使用match()方法匹配路径时返回匹配码
-
 
     /**
      * 是一个回调函数，在ContentProvider创建的时候，就会运行,第二个参数为指定数据库名称，如果不指定，就会找不到数据库；

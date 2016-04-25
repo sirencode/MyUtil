@@ -3,9 +3,11 @@ package com.util.yongheshen.myutil.provider;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -15,13 +17,13 @@ import java.util.Date;
 
 /**
  * Created by Diablo on 16/4/22.
+ * 设置exported="true" 才可以在其他APP中访问
  */
 public class ProviderAct extends Activity implements View.OnClickListener{
 
     Uri uri;
+    //uri组成content://+ AUTHORITY + /表名
     String AUTHORITY="content://com.util.yongheshen.myutil.provider/teacher";
-    ContentResolver cr;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,12 +41,13 @@ public class ProviderAct extends Activity implements View.OnClickListener{
         update.setOnClickListener(this);
         Button query = (Button) findViewById(R.id.btn_query);
         query.setOnClickListener(this);
+        Button call = (Button) findViewById(R.id.btn_toact);
+        call.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         ContentResolver cr = getContentResolver();
-
         ContentValues cv = new ContentValues();
         switch (v.getId()){
             case R.id.btn_add:
@@ -65,15 +68,21 @@ public class ProviderAct extends Activity implements View.OnClickListener{
                 break;
             case R.id.btn_query:
                 // 查找id为1的数据
-                Cursor c = cr.query(uri, null, "_ID=?", new String[] { "1" }, null);
+                Cursor c = cr.query(uri, null, null, null, null);
                 //这里必须要调用 c.moveToFirst将游标移动到第一条数据,不然会出现index -1 requested , with a size of 1错误；cr.query返回的是一个结果集。
                 if (c.moveToFirst() == false) {
                     // 为空的Cursor
                     return;
                 }
-                int name = c.getColumnIndex("name");
-                System.out.println(c.getString(name));
+                while(c.moveToNext()){
+                    Log.i("ContentTest", "id="+ c.getInt(0)+ ",name="+ c.getString(1)+ ",title="+ c.getString(2)+ ",sex="+ c.getInt(3));
+                };
                 c.close();
+                break;
+            case R.id.btn_toact:
+                Intent intent = new Intent();
+                intent.setClassName("com.app1.yongheshen.app1", "com.app1.yongheshen.app1.ActTwo");
+                startActivity(intent);
                 break;
             default:
                 break;

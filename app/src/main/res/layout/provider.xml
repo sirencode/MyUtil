@@ -31,4 +31,11 @@
         android:text="Querys"
         android:id="@+id/btn_query"
         android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Call Act"
+        android:id="@+id/btn_toact"
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>

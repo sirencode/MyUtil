@@ -32,7 +32,8 @@
         </activity>
         <provider
             android:authorities="com.util.yongheshen.myutil.provider"
-            android:name=".provider.MyProvicer" />
+            android:name=".provider.MyProvicer"
+            android:exported="true"/>
     </application>
 
 </manifest>
