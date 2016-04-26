@@ -30,14 +30,11 @@ public class AnnotationUtil {
      * @return
      * @throws Exception
      */
-    @SuppressWarnings("all")
     public Map<String, String> loadMethodVlaue(Class annotationClasss,
-                                               String annotationField, String className, String methodName) throws Exception {
-        System.out.println("处理Annotation类名称  === " + annotationClasss.getName());
-        System.out.println("处理Annotation类属性名称  === " + annotationField);
-        System.out.println("处理Annotation的调用类名称  === " + className);
+                                               String annotationField, Object className, String methodName) throws Exception {
+        Class<?> type_class = className.getClass();
         Map<String, String> map = new HashMap<String, String>();
-        Method[] methods = Class.forName(className).getDeclaredMethods();
+        Method[] methods = type_class.getDeclaredMethods();
         for (Method method : methods) {
             System.out.println(method.getName());
             if (method.isAnnotationPresent(annotationClasss) && method.getName().equals(methodName)) {
@@ -66,12 +63,10 @@ public class AnnotationUtil {
      * @throws Exception
      */
     public Map<String, String> loadAttributeVlaue(Class annotationClasss,
-                                                  String annotationField, String className, String attributeName) throws Exception {
-        System.out.println("处理Annotation类名称  === " + annotationClasss.getName());
-        System.out.println("处理Annotation类属性名称  === " + annotationField);
-        System.out.println("处理Annotation的调用类名称  === " + className);
+                                                  String annotationField, Object className, String attributeName) throws Exception {
+        Class<?> type_class = className.getClass();
         Map<String, String> map = new HashMap<String, String>();
-        Field[] fields = Class.forName(className).getFields();
+        Field[] fields = type_class.getFields();
         for (Field field : fields) {
             System.out.println(field.getName());
             if (field.isAnnotationPresent(annotationClasss) && field.getName().equals(attributeName)) {

@@ -15,7 +15,7 @@ public class Apple {
     public void getName(){
         try {
             AnnotationUtil.getInstance().loadAttributeVlaue(MyAnnotations.class, "name",
-                    Apple.class.getName(),"appleName");
+                    this,"appleName");
         } catch (Exception e) {
             e.printStackTrace();
         }
