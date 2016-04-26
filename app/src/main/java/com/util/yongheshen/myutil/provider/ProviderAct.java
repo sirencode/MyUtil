@@ -3,7 +3,10 @@ package com.util.yongheshen.myutil.provider;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -80,12 +83,35 @@ public class ProviderAct extends Activity implements View.OnClickListener{
                 c.close();
                 break;
             case R.id.btn_toact:
-                Intent intent = new Intent();
-                intent.setClassName("com.app1.yongheshen.app1", "com.app1.yongheshen.app1.ActTwo");
-                startActivity(intent);
+                if (isAppInstalled(ProviderAct.this,"com.app1.yongheshen.app1")) {
+                    Intent intent = new Intent();
+                    intent.setClassName("com.app1.yongheshen.app1", "com.app1.yongheshen.app1.ActTwo");
+                    startActivity(intent);
+                }
                 break;
             default:
                 break;
         }
     }
+
+    private boolean isAppInstalled(Context context, String packagename)
+    {
+        PackageInfo packageInfo;
+        try {
+            packageInfo = context.getPackageManager().getPackageInfo(packagename, 0);
+        }catch (PackageManager.NameNotFoundException e) {
+            packageInfo = null;
+            e.printStackTrace();
+        }
+        if(packageInfo ==null){
+            //System.out.println("没有安装");
+            return false;
+        }else{
+            //System.out.println("已经安装");
+            return true;
+        }
+    }
+
+
+
 }

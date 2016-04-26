@@ -25,6 +25,9 @@
 
         </activity>
         <activity android:name=".provider.ProviderAct">
+
+        </activity>
+        <activity android:name=".annotation.AnnotationAct">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

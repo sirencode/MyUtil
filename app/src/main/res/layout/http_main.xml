@@ -11,18 +11,21 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="HttpsUrl Get"/>
+
     <Button
         android:id="@+id/btn_urlPost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="HttpsUrl Post"/>
+
     <Button
         android:id="@+id/btn_getImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="HttpsgetImg"/>
+
     <TextView
         android:id="@+id/tv_info"
         android:layout_width="match_parent"
