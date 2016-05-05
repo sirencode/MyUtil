@@ -1,0 +1,44 @@
+
+MVP之Model
+
+Model 是用户界面需要显示数据的抽象，也可以理解为从业务数据（结果）那里到用户界面的抽象（Business rule, data access, model classes）。
+本文 Demo 为了简单处理就直接把业务放到了对应的 Model 之中。
+
+MVP之View
+
+视图这一层体现的很轻薄，负责显示数据、提供友好界面跟用户交互就行。MVP下Activity和Fragment体现在了这一层，
+Activity一般也就做加载UI视图、设置监听再交由Presenter处理的一些工作，所以也就需要持有相应Presenter的引用。
+例如，Activity上滚动列表时隐藏或者显示Acionbar（Toolbar），这样的UI逻辑时也应该在这一层。另外在View上输入的数据做一些判断时，
+例如，EditText的输入数据，假如是简单的非空判断则可以作为View层的逻辑，而当需要对EditText的数据进行更复杂的比较时，
+如从数据库获取本地数据进行判断时明显需要经过Model层才能返回了，所以这些细节需要自己掂量。
+
+MVP之Presenter
+
+Presenter这一层处理着程序各种逻辑的分发，收到View层UI上的反馈命令、定时命令、系统命令等指令后分发处理逻辑交由业务层做具体的业务操作，
+然后将得到的 Model 给 View 显示。
+
+
+
+获取数据->改变View的流程（APP的主要流程）
+
+步骤1：UI(Activity)实现View方法，引用Presenter
+步骤2：Presenter调用Model，走Model具体逻辑
+步骤3：Model逻辑实现，回调Presenter方法返回数据
+步骤4：Presenter回调View，即回到UI，回调View方法
+
+View改变->业务处理
+在View的改变事件——>presenter -> model处理，回调presenter -> 根据结果显示UI
+
+双向数据沟通
+
+1 v变化——> p -> m处理
+2 m处理后 -> p -> v变化
+
+或者
+
+1 m处理后 -> p -> v变化
+2 v变化——> p -> m处理
+
+MVP模式
+使用MVP时，Activity和Fragment变成了MVC模式中View层，Presenter相当于MVC模式中Controller层，处理业务逻辑。
+每一个Activity都有一个相应的presenter来处理数据进而获取model。

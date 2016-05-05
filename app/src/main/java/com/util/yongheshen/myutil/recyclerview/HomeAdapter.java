@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by Diablo on 16/4/22.
  */
-class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder>
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder>
 {
 
     private List<String> mDatas;

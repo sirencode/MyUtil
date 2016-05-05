@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.view.View;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class ViewUtils {
@@ -35,10 +34,13 @@ public class ViewUtils {
         // 返回 Field 对象的一个数组，这些对象反映此 Class 对象表示的类或接口声明的成员变量，
         // 包括公共、保护、默认（包）访问和私有成员变量，但不包括继承的成员变量。
         Field[] fields = classType.getDeclaredFields();
-
         if (null != fields && fields.length > 0) {
 
             for (Field field : fields) {
+                //当你通过反射获取到 Constructor、Method、Field 后，在反射调用之前将此对象的 accessible
+                // 标志设置为 true，以此来提升反射速度。值为 true 则指示反射的对象在使用时应该取消 Java 语言访问检查。
+                // 值为 false 则指示反射的对象应该实施 Java 语言访问检查
+                field.setAccessible(true);
                 // 该成员变量是否存在ContentWidget类型的注解
                 if (field.isAnnotationPresent(ContentWidget.class)) {
 
